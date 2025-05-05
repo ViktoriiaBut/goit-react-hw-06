@@ -10,31 +10,30 @@ import PropTypes from "prop-types";
 const Contact = ({ id, name, number }) => {
     const dispatch = useDispatch();
     const handleDelete = () => dispatch(deleteContacts(id));
-    
-    Contact.propTypes = {
-        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-        name: PropTypes.string.isRequired,
-        number: PropTypes.string.isRequired,
-      };
-
-
+  
     return (
-        <li className={s.list}>
-            <div>
-                <div className={s.info}>
-                    <HiUser />
-                    <p>{name}</p>
-                </div>
-                <div className={s.info}>
-                    <FaPhoneAlt />
-                    <p>{number}</p>
-                </div>
-            </div>
-            <button type="button" className={s.button} onClick={handleDelete}>
-                Delete
-            </button>
-        </li>
+      <li className={s.list}>
+        <div>
+          <div className={s.info}>
+            <HiUser />
+            <p>{name}</p>
+          </div>
+          <div className={s.info}>
+            <FaPhoneAlt />
+            <p>{number}</p>
+          </div>
+        </div>
+        <button type="button" className={s.button} onClick={handleDelete}>
+          Delete
+        </button>
+      </li>
     );
-};
-
-export default Contact;
+  };
+  
+  Contact.propTypes = {
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    name: PropTypes.string.isRequired,
+    number: PropTypes.string.isRequired,
+  };
+  
+  export default Contact;

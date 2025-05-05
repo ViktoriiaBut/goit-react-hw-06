@@ -3,20 +3,25 @@ import * as Yup from "yup";
 import s from "./ContactForm.module.css";
 import { nanoid } from "nanoid";
 import { useId } from "react";
-import PropTypes from 'prop-types';
+import { useDispatch } from "react-redux";
+import { addContacts } from '../../redux/contactsSlice';
 
-const ContactForm = ({ contactsArray }) => {
+const ContactForm = () => {
+  const dispatch = useDispatch();
   const nameFieldId = useId();
   const numberFieldId = useId();
+
+ 
 
   const submitForm = (values, actions) => {
     const contactData = {
       id: nanoid(),
-      ...values,
+      name: values.name,
+      number: values.number,
     };
 
-    contactsArray(contactData);
-    actions.resetForm();
+   dispatch(addContacts(contactData));
+   actions.resetForm();
   };
 
   const feedbackSchema = Yup.object().shape({
@@ -24,9 +29,7 @@ const ContactForm = ({ contactsArray }) => {
     number: Yup.string().min(7).max(20).required("Required"), 
         });
 
-      ContactForm.propTypes = {
-        contactsArray: PropTypes.func.isRequired, 
-      };
+
         
   return (
     <Formik

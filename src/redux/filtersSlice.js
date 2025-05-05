@@ -6,9 +6,9 @@ const slice = createSlice({
     status: "",
   },
 
-  reduсers: {
+  reducers: {
     changeFilter(state, action) {
-        state.status = action.payload
+      state.status = action.payload;
     }
   }
 })

@@ -6,7 +6,7 @@ import s from "./SearchBox.module.css";
 const SearchBox = () => {
     const searchFieldId = useId();
     const dispatch = useDispatch();
-    const filter = useSelector((state) => state.filters); 
+    const filter = useSelector((state) => state.filter.status); 
 
     const handleFilterChange = (e) => {
         dispatch(changeFilter(e.target.value));

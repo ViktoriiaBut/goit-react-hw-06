@@ -7,20 +7,20 @@ import PropTypes from "prop-types";
 
 
 
-const Contact = ({ id, name, number }) => {
+const Contact = ({ data }) => {
     const dispatch = useDispatch();
-    const handleDelete = () => dispatch(deleteContacts(id));
+    const handleDelete = () => dispatch(deleteContacts(data.id));
   
     return (
       <li className={s.list}>
         <div>
           <div className={s.info}>
             <HiUser />
-            <p>{name}</p>
+            <p>{data.name}</p>
           </div>
           <div className={s.info}>
             <FaPhoneAlt />
-            <p>{number}</p>
+            <p>{data.number}</p>
           </div>
         </div>
         <button type="button" className={s.button} onClick={handleDelete}>
@@ -31,9 +31,11 @@ const Contact = ({ id, name, number }) => {
   };
   
   Contact.propTypes = {
-    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-    name: PropTypes.string.isRequired,
-    number: PropTypes.string.isRequired,
+    data: PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    }).isRequired,
   };
   
   export default Contact;
